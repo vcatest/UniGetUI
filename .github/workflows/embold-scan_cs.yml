@@ -10,7 +10,10 @@ jobs:
     container: ubuntu:20.04
     steps:
     - uses: actions/checkout@v4
-    
+
+    - name: List Repository Contents (Diagnostic)
+      run: ls -al $GITHUB_WORKSPACE
+      
     - name: Install dependencies (curl, wget, libssl1.1)
       run: |
         apt-get update
