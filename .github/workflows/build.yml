@@ -17,6 +17,14 @@ jobs:
       run: |
         apt-get update
         apt-get install curl wget libssl1.1 -y 
+
+    ## NEW: Install Wine to allow Linux to run cswinrt.exe during the build process
+    - name: Install Wine and binfmt-support
+      run: |
+        sudo dpkg --add-architecture i386
+        sudo apt-get update
+        sudo apt-get install -y wine64 wine32 binfmt-support
+        # binfmt-support allows the system to natively intercept .exe calls and route them through Wine
         
     ## UPDATED: SonarScanner requires Java 17+. Embold will also work fine with this.
     - name: Install Java for Embold & SonarScanner
